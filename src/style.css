@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    overflow: hidden;             /* Esconde a rolagem da página */
+}
+
+main::after {           /* É um pseudo-elemento*/
+    content: "";        /* No Windows se entre parenteses eu apertar Windows + . ele me mostrará emojis */
+    position: fixed;    /* Vão ficar presos na tela*/
+    top: 0;
+    left: 0;
+    min-height: 100vh;  /* Cobre toda a altura da tela */
+    width: 80vw;
+    
+    background: linear-gradient(-233deg, #000 40%, rgba(0, 0, 0, 0) 65%) no-repeat; /* Pegue eles facilmente no site CSS Gradient */
+}
+
+.personagem {  /* Todos menos o Luffy */
+    display: none; /* Esconde todas as imagens da tela */
+    height: 100vh; /* Usar 100% do dispositivo do usuário */
+}
+
+.personagem.selecionado { /* Luffy. Obs: por .selecionado estar colado em .personagem, significa que essas estilizações só funcionaram num elemento que tem as duas classes ao mesmo tempo, e não um elemento com uma classe e outro elemento com outra classe */
+    display: block;       /* Aparece a imagem do Luffy, já que por ter classe .personagem ele havia sumido na estilização .personagem*/
+}
+
+.imagem {
+    width: 100%;       /* Obriga a imagem usar apenas 100% da tela, nada mais */
+    height: 100%;      /* Mesmo estando 100% ele só usa 100% do seu espaço e não da tela*/
+    object-fit: cover; /* Com o valor cover, ele obriga a imagem usar todo o espaço onde está, tirando o efeito de muito alargado a imagem*/
+}
+
+.conteudo {
+    position: absolute;      /* A posição depende do Elemento Pai, ou seja, do .personagem*/
+    top: 0;
+    left: 120px;             /* Afastei da esquerda */
+    display: flex;
+    flex-direction: column;  /* Deixar os conteúdos um sobre o outro */
+    justify-content: center; /* Mandei tudo ficar no meio, porém, somente ele não dará certo, pois a "caixa" onde ele está precisa de um espaço para ele poder ir para o meio desse espaço */
+    min-height: 100vh;       /* Para realmente ficar no meio, eu disse que o espaço onde ele está tem toda a altura da tela */
+    max-width: 380px;        /* Ficou bonito com a largura desse tamanho */
+    z-index: 1;              /* O eixo-z é o de profundidade, com o valor 1 nós colocamos a logo, nome e descrição por cima do gradiente que criamos */
+}
+
+.logo {
+    background-image: url("./imagens/one-piece-logo.png"); /* Só colocar isso não faz aparecer, pois precisa de um espaço a caixa onde ele está */
+    background-size: cover; /* A imagem deve cobrir todo o espaço onde ela está */
+    height: 100px;
+    width: 230px;
+    margin-bottom: 35px;
+}
+
+.nome-personagem {
+    color: #ffffff;
+    font-size: 48px;
+    font-family: "Secular One";
+    font-weight: 400;
+    margin-bottom: 20px;        /* Afastar da descrição */
+}
+
+.descricao {
+    color: #ffffff;
+    font-family: "Rubik";
+    line-height: 24px;    /* Distãncia entre as linhas na altura */
+}
+
+ul {
+    list-style: none; /* Some com as bolinhas */
+}
+
+.botoes {
+    position: fixed;                        /* Prende eles na tela */
+    right: 0;                               /* Taca pra direita */
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;                      /* Os botões podem ocupar toda a altura da tela */
+    width: 180px;                           /* Para afastar do canto */
+    justify-content: center;                /* Ficaram no meio da página */
+    align-items: center;                    /* Enquanto o justify-content alinha na vertical, o align-items faz o mesmo na horizontal */
+    gap: 10px;                              /* Só funciona com o display flex, ele serve para dar um espaçamento entre os elementos no Flex Box*/
+    background-color: rgba(0, 0, 0, 0.3); /* O último valor é responsável pela opacidade */
+}
+
+.botao {
+    border: none;     /* Sumiu com a borda */
+    background: none; /* Sumiu o fundo que vem por padrão no botão */
+    cursor: pointer;  /* Aparecer uma mão ao passar o cursor */
+}
+
+.botao.selecionado {
+    transform: scale(1.2);          /* Aumenta o tamanho do elemento */
+    box-shadow: 0 0 10px #D9D9D9; /* Fez um sombreamento ao redor, porém, foi ao redor da <div>, logo ficou retangular */
+    border-radius: 50%;
+}
+
+.botao img {     /* Quando as palavras estão separadas por espaço, significa que a última palavra está dentro das anteriores */
+    border-radius: 50%;
+}
